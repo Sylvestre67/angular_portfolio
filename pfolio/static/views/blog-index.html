@@ -1,0 +1,18 @@
+<section id="my-blog">
+	<div ng-controller="blogListCtrl" class="row">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="ajax-spinning" ng-show="loading">
+            </div>
+			<h1>Blog</h1>
+			<hr>
+			<ul class="blog-post-list list-unstyled">
+				<li ng-repeat="post in blog_posts">
+					<h1><a href="/#/blogs/{{ post.pk }}">{{ post.fields.title }}</a></h1>
+					<p>{{ post.fields.excerpt }}</p>
+					<p class="small"><em>{{ post.fields.created_on | date:'mediumDate' }}</em></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+

@@ -1,0 +1,34 @@
+{%  extends 'base.html' %}
+
+{%  load staticfiles %}
+
+{%  block body_content %}
+    <section id="home" class="me flex-container" ng-controller="navigationMenuCtrl">
+                <div id="side-navigation" class="col-lg-2 col-md-2 col-xs-2 bg-light-gray pad-0">
+                    <div class="side-brand">
+                        <h1>SylwebD</h1>
+                    </div>
+                    <ul class="side-nav">
+                        <li ng-class="{ active: isActive('/') }"><a href="#/">Home</a></li>
+                        <li ng-class="{ active: isActive('/blogs/') }"><a href="#/blogs/">Blog</a></li>
+                        <li ng-class="{ active: isActive('/portfolio/') }"><a href="#/portfolio/">Portfolio</a></li>
+                        <li ng-class="{ active: isActive('/contact/') }"><a href="#/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="main-content col-lg-10 col-md-12 col-xs-12">
+                    {% verbatim %}
+                    <div class="row">
+                        <div class="col-lg-offset-1 col-lg-8 col-md-12 col-xs-12">
+                            <div ng-view></div>
+                        </div>
+                    </div>
+                    {% endverbatim %}
+                </div>
+            </section>
+    <footer class="footer-nav bg-light-gray" ng-controller="navigationMenuCtrl">
+                <div ng-class="{ footerActive: isActive('/') }"><a href="#/"><i class="fa fa-home"></i></a></div>
+                <div ng-class="{ footerActive: isActive('/blogs/') }"><a href="#/blogs/"><i class="fa fa-pencil-square-o"></i></a></div>
+                <div ng-class="{ footerActive: isActive('/portfolio/') }"><a href="#/portfolio/"><i class="fa fa-flask"></i></a></div>
+                <div ng-class="{ footerActive: isActive('/contact/') }"><a href="#/contact/"><i class="fa fa-envelope"></i></a></div>
+            </footer>
+{% endblock %}

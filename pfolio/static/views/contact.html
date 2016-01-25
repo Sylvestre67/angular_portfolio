@@ -1,0 +1,62 @@
+
+    <h1>Contact Me</h1>
+
+    <div ng-controller="contactFormController">
+        <div class="ajax-spinning" ng-show="loading">
+        </div>
+
+        <div id="ajax-loader" class="ajax-loader" ng-hide="hideAjax">
+            <img src="static/images/ajax_loader.gif" class="ajax-loader img-responsive"/>
+        </div>
+
+        <form  ng-hide="hideContactForm" id="contact-form" name="contactForm" ng-submit="submittedForm.submitTheForm()" novalidate>
+
+            <div class="form-group">
+                <label for="fromEmail">From</label>
+                <input ng-model="submittedForm.from"
+                       type="email" class="form-control" id="fromEmail" name="from" placeholder="Enter your email" required />
+
+                <div class="p small errors" ng-show="contactForm.from.$invalid && !contactForm.from.$pristine">
+                    You must enter a valid email.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="subjectText">Subject</label>
+                <input ng-model="submittedForm.subject"
+                       ng-class=""
+                       ng-minlength="1"
+                       type="text" class="form-control" id="subjectText" name="subject" placeholder="Subject" required/>
+                <div class="p small errors" ng-show="contactForm.subject.$invalid && !contactForm.subject.$pristine">
+                    Please add a subject, I would be sad not to see one...
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputFile">Message</label>
+                <textarea ng-model="submittedForm.message"
+                          ng-minlength="1"
+                          class="form-control" rows="5" id="subjectText" name="message" placeholder="How can I help you ?" required></textarea>
+                <div class="p small errors" ng-show="contactForm.message.$invalid && !contactForm.message.$pristine">
+                    What about a few words...?
+                </div>
+            </div>
+
+            <div class="checkbox">
+                <input id="copy_me" ng-model="submittedForm.copy_me" type="checkbox" name="copy_me" class="css-checkbox">
+                <label for="copy_me" class="css-label"><span></span> Check this box to receive a copy of your message in your inbox.</label>
+            </div>
+
+            <button ng-disabled="contactForm.$invalid" name="submit" type="submit" class="btn btn-sylwebd pull-right">Send</button>
+            <input type="hidden" name="isValid" value="contactForm.$invalid">
+
+        </form>
+
+        <div ng-hide="hideThankYou" id="thank-you-submit">
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor sem,
+                consectetur sit amet blandit at, accumsan quis risus. Praesent eu dolor nec risus molestie sollicitudin.
+                Phasellus fringilla, eros vel ultricies dapibus, nisl ligula porttitor massa, nec mattis dui augue ut neque.
+            </p>
+        </div>
+
+    </div>

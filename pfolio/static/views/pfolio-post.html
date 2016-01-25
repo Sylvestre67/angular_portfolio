@@ -1,0 +1,7 @@
+<div ng-controller="portfolioDetailCtrl" class="portfolio-content">
+    <div class="ajax-spinning" ng-show="loading">
+    </div>
+    <h1>{{ pfolio_post.fields.title }}</h1>
+    <div ng-bind-html="pfolioPostAsHtml()"></div>
+    <img ng-show="showImage" class="img-responsive" src="media/{{ pfolio_post.fields.image }}">
+</div>

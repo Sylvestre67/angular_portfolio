@@ -1,0 +1,5 @@
+{
+  "directory": "pfolio//static/",
+  "timeout": 120000,
+  "color": true
+}
