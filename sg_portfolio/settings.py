@@ -21,11 +21,7 @@ STATIC_DIRS = os.path.join(BASE_DIR,'static')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^fq*@qy#*4)v9l+qm#5a4p47n+c^@hh&_5%c@#ucqtna1(^f@f'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
@@ -99,6 +95,9 @@ else:
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 if os.getenv('DATABASE_URL'):
+    SECRET_KEY = os.getenv('SECRET_KEY')
+    DEBUG = False
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -158,6 +157,12 @@ else:
     MEDIA_ROOT = 'media'
 
     INTERNAL_IPS = ['127.0.0.1','0.0.0.0']
+
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = '111'
+
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
 
 LANGUAGE_CODE = 'en-us'
 

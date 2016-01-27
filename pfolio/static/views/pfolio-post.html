@@ -3,5 +3,5 @@
     </div>
     <h1>{{ pfolio_post.fields.title }}</h1>
     <div ng-bind-html="pfolioPostAsHtml()"></div>
-    <img ng-show="showImage" class="img-responsive" src="media/{{ pfolio_post.fields.image }}">
+    <img ng-show="showImage" class="img-responsive" src="{{ static_url }}{{ pfolio_post.fields.image }}">
 </div>
