@@ -1,5 +1,6 @@
 from django.contrib import admin
 from pfolio import models as mymodels
+from sg_portfolio.settings import STATIC_URL
 
 class blogPostAdmin(admin.ModelAdmin):
     date_hierarchy = 'created_on'
@@ -7,8 +8,8 @@ class blogPostAdmin(admin.ModelAdmin):
 
     class Media:
         js = [
-            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/static/js/admin.js',
+            '%sgrappelli/tinymce/jscripts/tiny_mce/tiny_mce.js' % STATIC_URL,
+            '%sjs/admin.js' % STATIC_URL,
         ]
 
 
@@ -18,8 +19,8 @@ class portfolioPostAdmin(admin.ModelAdmin):
 
     class Media:
         js = [
-            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/static/js/admin.js',
+            '%sgrappelli/tinymce/jscripts/tiny_mce/tiny_mce.js' % STATIC_URL,
+            '%sjs/admin.js' % STATIC_URL,
         ]
 
 admin.site.register(mymodels.blogPost, blogPostAdmin)

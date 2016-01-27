@@ -18,15 +18,20 @@
 
 	<link rel="stylesheet" type="text/less" href="{%  static 'c/main.css' %}"/>
 
-    <script>var static_url;</script>
+    <script>
+        var static_url;
+        var media_url;
+    </script>
 
     {% if debug %}
     <script>
-        static_url = 'static/'
+        static_url = 'static/';
+        media_url = 'media/';
 	</script>
      {% else %}
      <script>
-        static_url = 'https://sg-pfolio.s3.amazonaws.com/static/'
+        static_url = 'https://sg-pfolio.s3.amazonaws.com/static/';
+        media_url = 'https://sg-pfolio.s3.amazonaws.com/media/';
      </script>
     {% endif %}
 

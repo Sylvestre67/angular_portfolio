@@ -69,5 +69,5 @@ testing.py
 
 # SQlite DB
 sg-pfolio
-
+media/
 !dist/

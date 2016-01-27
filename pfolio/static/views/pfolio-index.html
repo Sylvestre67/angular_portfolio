@@ -7,7 +7,7 @@
 			<hr>
 			<div ng-repeat="post in portfolio_posts"  class="portfolio-list">
 				<div class="col-xs-12 col-md-6 col-lg-3 pfoliopost-wrapper">
-					<img ng-show="chekIfImage(post)" src = "media/{{ post.fields.image }}" class="img-responsive">
+					<img ng-show="chekIfImage(post)" src = "{{ static_url }}media/{{ post.fields.image }}" class="img-responsive">
 					<h3><a href="/#/pfolio/{{ post.pk }}">{{ post.fields.title }}</a></h3>
 					<p>{{ post.fields.excerpt }}</p>
 				</div>

@@ -6,5 +6,4 @@
     <h1>{{ blog_post.fields.title }}</h1>
 	<p class="small"><em>{{ blog_post.fields.created_on | date:'mediumDate' }}</em></p>
 	<div ng-bind-html="blogPostAsHtml()"></div>
-    <img ng-show="showImage" class="img-responsive" src="media/{{ blog_post.fields.image }}">
 </div>

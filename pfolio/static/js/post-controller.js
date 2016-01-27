@@ -16,6 +16,7 @@ postControl.controller('aboutMeCtrl',['$scope',
 postControl.controller('blogListCtrl',['$scope','$http',
     function($scope,$http){
         $scope.loading = true;
+        $scope.static_url = media_url;
         $http.get('/api/blogPosts/').success(function(data){
             $scope.blog_posts = angular.fromJson(data);
 
@@ -32,6 +33,8 @@ postControl.controller('blogListCtrl',['$scope','$http',
 postControl.controller('pfolioListCtrl',['$scope','$http',
     function($scope,$http){
         $scope.loading = true;
+        $scope.static_url = media_url;
+
         $http.get('api/portfolioPosts/').success(function(data){
             $scope.portfolio_posts = angular.fromJson(data);
             $scope.chekIfImage = function (post){
@@ -48,6 +51,8 @@ postControl.controller('pfolioListCtrl',['$scope','$http',
 postControl.controller('blogDetailCtrl',['$scope','$routeParams','$http','$sce',
     function($scope,$routeParams,$http,$sce){
         $scope.loading = true;
+        $scope.static_url = media_url;
+
         $scope.postId = $routeParams.postId;
         $http.get('api/blogPosts/' + $scope.postId + '/').success(function(data) {
                 $scope.blog_post = angular.fromJson(data)[0];
@@ -66,6 +71,8 @@ postControl.controller('blogDetailCtrl',['$scope','$routeParams','$http','$sce',
 postControl.controller('portfolioDetailCtrl',['$scope','$routeParams','$http','$sce',
     function($scope,$routeParams,$http,$sce){
         $scope.loading = true;
+        $scope.static_url = media_url;
+
         $scope.postId = $routeParams.postId;
         $http.get('api/pfolioPosts/' + $scope.postId + '/').success(function(data) {
                 $scope.pfolio_post = angular.fromJson(data)[0];
