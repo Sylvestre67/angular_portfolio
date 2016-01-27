@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'sg_portfolio.wsgi.application'
 
 # Email
 # PostmarkApp
-if 'POSTMARK_API_TOKEN' in os.environ:
+if os.getenv('POSTMARK_API_TOKEN'):
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.postmarkapp.com'
     EMAIL_HOST_PASSWORD = os.environ['POSTMARK_API_TOKEN']
@@ -98,15 +98,15 @@ else:
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-if 'DATABASE_URL' in os.environ:
+if os.getenv('DATABASE_URL'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
+            'NAME': os.getenv('RDS_DB_NAME'),
+            'USER': os.getenv('RDS_USERNAME'),
+            'PASSWORD': os.getenv('RDS_PASSWORD'),
+            'HOST': os.getenv('RDS_HOSTNAME'),
+            'PORT': os.getenv('RDS_PORT'),
         }
     }
 
