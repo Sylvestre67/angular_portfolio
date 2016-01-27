@@ -36,6 +36,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Application definition
 
 INSTALLED_APPS = (
+    'grappelli',
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'storages',
     'pfolio',
 )
 
@@ -82,21 +85,19 @@ WSGI_APPLICATION = 'sg_portfolio.wsgi.application'
 
 # Email
 # PostmarkApp
-if os.getenv('POSTMARK_API_TOKEN'):
+if 'POSTMARK_API_TOKEN' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.postmarkapp.com'
-    EMAIL_HOST_PASSWORD = os.getenv('POSTMARK_API_TOKEN')
-    EMAIL_HOST_USER = os.getenv('POSTMARK_API_TOKEN')
+    EMAIL_HOST_PASSWORD = os.environ['POSTMARK_API_TOKEN']
+    EMAIL_HOST_USER = os.environ['POSTMARK_API_TOKEN']
     EMAIL_PORT = '587'
     EMAIL_USE_TLS = True
-    SERVER_EMAIL = os.getenv('POSTMARK_INBOUND_ADDRESS')
-
+    SERVER_EMAIL = os.environ['POSTMARK_INBOUND_ADDRESS']
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 if 'RDS_HOSTNAME' in os.environ:
     DATABASES = {
         'default': {
@@ -108,6 +109,27 @@ if 'RDS_HOSTNAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
         }
     }
+
+    #AWS SETTINGS
+    AWS_STORAGE_BUCKET_NAME = 'sg-pfolio'
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+    # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
+    # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
+    # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
+    # We also use it in the next setting.
+    STATICFILES_LOCATION = 'static'
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    ADMIN_MEDIA_PREFIX = STATIC_URL + 'grappelli/'
+
+    # Media files on S3 configuration
+    MEDIA_ROOT = ''
+    MEDIAFILES_LOCATION = 'media'
+    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 else:
     DATABASES = {
@@ -121,17 +143,17 @@ else:
         }
     }
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
 
-# Uploaded Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "..", "www", "media")
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/1.8/howto/static-files/
+    STATIC_URL = '/static/'
+    STATIC_ROOT = 'staticfiles'
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
+    # Uploaded Media files
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = 'media'
+
+    INTERNAL_IPS = ['127.0.0.1','0.0.0.0']
 
 LANGUAGE_CODE = 'en-us'
 
@@ -153,42 +175,3 @@ TEMPLATE_DIRS = [
     os.path.join(BASE_DIR,  'templates'),
 ]
 
-
-"""
-    # The region of your bucket, more info:
-    # http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
-    S3DIRECT_REGION = 'US Standard'
-
-    S3DIRECT_DESTINATIONS = {
-        # Allow anybody to upload any MIME type
-        'misc': ('uploads/media',)
-    }
-
-    #AWS SETTINGS
-    AWS_STORAGE_BUCKET_NAME = 'sg-portfolio'
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-
-
-
-    # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
-    # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
-    # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
-    # We also use it in the next setting.
-    STATICFILES_LOCATION = 'static'
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
-    # This is used by the `static` template tag from `static`, if you're using that. Or if anything else
-    # refers directly to STATIC_URL. So it's safest to always set it.
-    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-
-    # Tell the staticfiles app to use our Custom Storage when writing the collected static files (when
-    # you run `collectstatic`).
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-
-    # Media files on S3 configuration
-    MEDIA_ROOT = 'media'
-    MEDIAFILES_LOCATION = 'media'
-    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-"""

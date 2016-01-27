@@ -10,7 +10,7 @@ blogApp.config(['$locationProvider',function($locationProvider) {
 blogApp.config(['$sceDelegateProvider',function($sceDelegateProvider) {
   $sceDelegateProvider.resourceUrlWhitelist([
     'self',
-    'https://sg-portfolio.s3.amazonaws.com/**'
+    'https://sg-pfolio.s3.amazonaws.com/**'
   ]);
 
   $sceDelegateProvider.resourceUrlBlacklist([
@@ -23,27 +23,27 @@ blogApp.config(['$routeProvider',
     function($routeProvider){
         $routeProvider
             .when('/',{
-                templateUrl: 'static/views/about-me.html',
+                templateUrl: static_url + 'views/about-me.html',
                 controller: 'aboutMeCtrl'
             })
             .when('/blogs/',{
-                templateUrl: 'static/views/blog-index.html',
+                templateUrl: static_url + 'views/blog-index.html',
                 controller: 'blogListCtrl'
             })
             .when('/blogs/:postId',{
-                templateUrl:'static/views/blog-post.html',
+                templateUrl: static_url + 'views/blog-post.html',
                 controller: 'blogDetailCtrl'
             })
             .when('/portfolio/',{
-                templateUrl: 'static/views/pfolio-index.html',
+                templateUrl: static_url + 'views/pfolio-index.html',
                 controller: 'pfolioListCtrl'
             })
             .when('/pfolio/:postId',{
-                templateUrl:'static/views/pfolio-post.html',
+                templateUrl: static_url + 'views/pfolio-post.html',
                 controller: 'portfolioDetailCtrl'
             })
             .when('/contact/',{
-                templateUrl:'static/views/contact.html',
+                templateUrl: static_url + 'views/contact.html',
                 controller: 'contactFormController'
             })
             .otherwise({

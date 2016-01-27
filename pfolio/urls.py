@@ -1,8 +1,8 @@
 __author__ = 'Sylvestre'
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from pfolio import views
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^$',views.HomePageView.as_view(),name='home'),
 
     ###### API URL ######
@@ -11,4 +11,4 @@ urlpatterns = patterns('',
     url(r'^api/blogPosts/(?P<blog_post_pk>\d+)/$',views.APIBlogPostUnique.as_view(),name='APIBlogPostUnique'),
     url(r'^api/pfolioPosts/(?P<pfolio_post_pk>\d+)/$',views.APIPfolioPostUnique.as_view(),name='APIPfolioPostUnique'),
     url(r'^api/contactUsForm/$',views.APIContactUsForm.as_view(),name='APIContactUsForm'),
-)
+]
