@@ -69,3 +69,5 @@ testing.py
 
 # SQlite DB
 sg-pfolio
+
+!dist/
