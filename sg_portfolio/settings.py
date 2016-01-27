@@ -98,7 +98,7 @@ else:
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-if 'RDS_HOSTNAME' in os.environ:
+if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -109,6 +109,10 @@ if 'RDS_HOSTNAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
         }
     }
+
+    import dj_database_url
+    DATABASES['default'] =  dj_database_url.config()
+    DATABASES['default']['CONN_MAX_AGE'] = 500
 
     #AWS SETTINGS
     AWS_STORAGE_BUCKET_NAME = 'sg-pfolio'
