@@ -114,19 +114,19 @@ if os.getenv('DATABASE_URL'):
     DATABASES['default']['CONN_MAX_AGE'] = 500
 
     #AWS SETTINGS
-    AWS_STORAGE_BUCKET_NAME = 'static.sylwebd.com'
+    AWS_STORAGE_BUCKET_NAME = 'sg-pfolio'
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-    AWS_S3_CUSTOM_DOMAIN = 'static.sylwebd.com'
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
     # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
     # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
     # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
     # We also use it in the next setting.
-    STATICFILES_LOCATION = 'static'
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-    ADMIN_MEDIA_PREFIX = STATIC_URL + 'grappelli/'
+    #STATICFILES_LOCATION = 'static'
+    #STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    #STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    #ADMIN_MEDIA_PREFIX = STATIC_URL + 'grappelli/'
 
     # Media files on S3 configuration
     MEDIA_ROOT = ''
@@ -147,11 +147,6 @@ else:
     }
 
 
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/1.8/howto/static-files/
-    STATIC_URL = '/static/'
-    STATIC_ROOT = 'staticfiles'
-
     # Uploaded Media files
     MEDIA_URL = '/media/'
     MEDIA_ROOT = 'media'
@@ -164,6 +159,18 @@ else:
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
 
+#Static files (CSS, JavaScript, Images)
+#https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = (
+    STATIC_DIRS,
+    os.path.join(BASE_DIR_HEROKU, 'static'),
+)
+
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -174,10 +181,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATICFILES_DIRS = (
-    STATIC_DIRS,
-    os.path.join(BASE_DIR_HEROKU, 'static'),
-)
+
 
 TEMPLATE_DIRS = [
     #TEMPLATE_DIRS,

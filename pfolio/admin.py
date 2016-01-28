@@ -8,8 +8,8 @@ class blogPostAdmin(admin.ModelAdmin):
 
     class Media:
         js = [
-            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/static/filebrowser/js/TinyMCEAdmin.js',
+            '%sgrappelli/tinymce/jscripts/tiny_mce/tiny_mce.js' % STATIC_URL,
+            '%sfilebrowser/js/TinyMCEAdmin.js' % STATIC_URL,
         ]
 
 
@@ -19,8 +19,8 @@ class portfolioPostAdmin(admin.ModelAdmin):
 
     class Media:
         js = [
-            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/static/filebrowser/js/TinyMCEAdmin.js',
+            '%sgrappelli/tinymce/jscripts/tiny_mce/tiny_mce.js' % STATIC_URL,
+            '%sfilebrowser/js/TinyMCEAdmin.js' % STATIC_URL,
         ]
 
 admin.site.register(mymodels.blogPost, blogPostAdmin)
