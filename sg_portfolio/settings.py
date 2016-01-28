@@ -123,7 +123,7 @@ if os.getenv('DATABASE_URL'):
     # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
     # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
     # We also use it in the next setting.
-    #STATICFILES_LOCATION = 'static'
+    STATICFILES_LOCATION = 'static'
     #STATICFILES_STORAGE = 'custom_storages.StaticStorage'
     #STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
     #ADMIN_MEDIA_PREFIX = STATIC_URL + 'grappelli/'
