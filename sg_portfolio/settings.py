@@ -96,7 +96,7 @@ else:
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 if os.getenv('DATABASE_URL'):
     SECRET_KEY = os.getenv('SECRET_KEY')
-    DEBUG = False
+    DEBUG = True
 
     DATABASES = {
         'default': {
