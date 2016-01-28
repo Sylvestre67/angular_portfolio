@@ -170,6 +170,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR_HEROKU, 'static'),
 )
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 
 LANGUAGE_CODE = 'en-us'
 
