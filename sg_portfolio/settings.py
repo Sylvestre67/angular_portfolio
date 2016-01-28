@@ -114,10 +114,10 @@ if os.getenv('DATABASE_URL'):
     DATABASES['default']['CONN_MAX_AGE'] = 500
 
     #AWS SETTINGS
-    AWS_STORAGE_BUCKET_NAME = 'sg-pfolio'
+    AWS_STORAGE_BUCKET_NAME = 'static.sylwebd.com'
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    AWS_S3_CUSTOM_DOMAIN = 'static.sylwebd.com'
 
     # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
     # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
