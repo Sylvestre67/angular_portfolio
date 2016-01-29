@@ -3,14 +3,18 @@
 		<div class="col-xs-12 col-md-12 col-lg-12">
             <div class="ajax-spinning" ng-show="loading">
             </div>
-			<h1>Portfolio</h1>
+			<h1>Some of my recent work</h1>
 			<hr>
-			<div ng-repeat="post in portfolio_posts"  class="portfolio-list">
-				<div class="col-xs-12 col-md-6 col-lg-3 pfoliopost-wrapper">
-					<img ng-show="chekIfImage(post)" src = "{{ static_url }}{{ post.fields.image }}" class="img-responsive">
-					<h3><a href="/#/pfolio/{{ post.pk }}">{{ post.fields.title }}</a></h3>
-					<p>{{ post.fields.excerpt }}</p>
-				</div>
+                <div ng-repeat="post in portfolio_posts" class="pfolio-index">
+                    <div class="post-list">
+                    <img ng-show="chekIfImage(post)" src="{{ static_url }}{{ post.fields.image }}" class="">
+                        <div>
+                             <h3><a href="/#/pfolio/{{ post.pk }}">{{ post.fields.title }}</a></h3>
+                            <p>{{ post.fields.excerpt }}</p>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
 			</div>
 		</div>
 	</div>

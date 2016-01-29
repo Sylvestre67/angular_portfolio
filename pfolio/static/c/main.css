@@ -169,6 +169,16 @@ label.css-label {
   -ms-user-select: none;
   user-select: none;
 }
+.form-control {
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.form-control:focus {
+  border-color: #BBDCE8;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 /*BUTTON*/
 .btn-sylwebd {
   background-color: #333333;
@@ -241,8 +251,41 @@ label.css-label {
 /********************
   **   Posts   **
 ********************/
-.pfoliopost-wrapper {
-  text-align: center;
+.post-list {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+.post-list > img {
+  -webkit-flex: 1 1 0;
+  -moz-flex: 1 1 0;
+  -ms-flex: 1 1 0;
+  flex: 1 1 0;
+  width: auto;
+  height: 150px;
+}
+.post-list > div {
+  -webkit-flex: 3 1 auto;
+  -moz-flex: 3 1 auto;
+  -ms-flex: 3 1 auto;
+  flex: 3 1 auto;
+  margin-left: 1em;
+}
+.pfolio-index > hr {
+  border-top: 1px solid #eeeeee;
+}
+.blog-post-list hr {
+  border-top: 1px solid #eeeeee;
 }
 /********************
   ** Footer Nav **

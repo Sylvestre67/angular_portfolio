@@ -2,6 +2,6 @@
     <div class="ajax-spinning" ng-show="loading">
     </div>
     <h1>{{ pfolio_post.fields.title }}</h1>
+    <hr>
     <div ng-bind-html="pfolioPostAsHtml()"></div>
-    <img ng-show="showImage" class="img-responsive" src="{{ static_url }}{{ pfolio_post.fields.image }}">
 </div>

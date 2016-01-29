@@ -19,10 +19,6 @@ postControl.controller('blogListCtrl',['$scope','$http',
         $scope.static_url = media_url;
         $http.get('/api/blogPosts/').success(function(data){
             $scope.blog_posts = angular.fromJson(data);
-
-            if ($scope.blog_post.fields.image.length > 0){
-                $scope.showImage = true;
-             }
         }).finally(function () {
           // Hide loading spinner whether our call succeeded or failed.
           $scope.loading = false;
@@ -56,9 +52,11 @@ postControl.controller('blogDetailCtrl',['$scope','$routeParams','$http','$sce',
         $scope.postId = $routeParams.postId;
         $http.get('api/blogPosts/' + $scope.postId + '/').success(function(data) {
                 $scope.blog_post = angular.fromJson(data)[0];
+                debugger;
                 if ($scope.blog_post.fields.image.length > 0){
                         $scope.showImage = true;
                 }
+
                 $scope.blogPostAsHtml = function(){
                     return $sce.trustAsHtml($scope.blog_post.fields.content);
                 }

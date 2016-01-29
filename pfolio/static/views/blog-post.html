@@ -1,9 +1,8 @@
 <div ng-controller="blogDetailCtrl" class="blog-content">
     <div class="ajax-spinning" ng-show="loading">
     </div>
-	<h1>Blog</h1>
+	<h1>{{ blog_post.fields.title }}</h1>
+    <p class="small"><em>{{ blog_post.fields.created_on | date:'mediumDate' }}</em></p>
 	<hr>
-    <h1>{{ blog_post.fields.title }}</h1>
-	<p class="small"><em>{{ blog_post.fields.created_on | date:'mediumDate' }}</em></p>
-	<div ng-bind-html="blogPostAsHtml()"></div>
+    <div ng-bind-html="blogPostAsHtml()"></div>
 </div>
