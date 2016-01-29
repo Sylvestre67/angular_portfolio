@@ -23,27 +23,27 @@ blogApp.config(['$routeProvider',
     function($routeProvider){
         $routeProvider
             .when('/',{
-                templateUrl: static_url + 'views/about-me.html',
+                templateUrl: s_url + 'views/about-me.html',
                 controller: 'aboutMeCtrl'
             })
             .when('/blogs/',{
-                templateUrl: static_url + 'views/blog-index.html',
+                templateUrl: s_url + 'views/blog-index.html',
                 controller: 'blogListCtrl'
             })
             .when('/blogs/:postId',{
-                templateUrl: static_url + 'views/blog-post.html',
+                templateUrl: s_url + 'views/blog-post.html',
                 controller: 'blogDetailCtrl'
             })
             .when('/portfolio/',{
-                templateUrl: static_url + 'views/pfolio-index.html',
+                templateUrl: s_url + 'views/pfolio-index.html',
                 controller: 'pfolioListCtrl'
             })
             .when('/pfolio/:postId',{
-                templateUrl: static_url + 'views/pfolio-post.html',
+                templateUrl: s_url + 'views/pfolio-post.html',
                 controller: 'portfolioDetailCtrl'
             })
             .when('/contact/',{
-                templateUrl: static_url + 'views/contact.html',
+                templateUrl: s_url + 'views/contact.html',
                 controller: 'contactFormController'
             })
             .otherwise({

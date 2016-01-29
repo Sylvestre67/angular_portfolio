@@ -19,20 +19,21 @@
 	<link rel="stylesheet" type="text/less" href="{%  static 'c/main.css' %}"/>
 
     <script>
-        var static_url;
+        var s_url;
         var media_url;
         var static_domain;
+        s_url = 'static/';
     </script>
+
 
     {% if debug %}
     <script>
-        static_url = 'static/';
         media_url = 'media/';
 	</script>
      {% else %}
      <script>
-        static_url = 'static/';
-        media_url = 'https://sg-pfolio.s3.amazonaws.com/media/';
+        s_url = 'static/';
+        media_url  = 'https://sg-pfolio.s3.amazonaws.com/media/';
      </script>
     {% endif %}
 
