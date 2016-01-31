@@ -262,16 +262,20 @@ label.css-label {
 .post-list{
       .flex-container;
       .flex-flow(row,wrap);
-      .flex-content-justify(space-around,flex-start);
+      .flex-content-justify(flex-start,flex-start);
+      .flex-align-content(flex-start);
 
-      & > img {
-        .flex-item(1,1,0);
-        width:auto;
-        height:150px;
+      & > a {
+          & > img {
+          width:100%;
+          height:auto;
+        }
+        .flex-item(1,0,auto);
+
       }
 
       & > div {
-        .flex-item(3,1,auto);
+        .flex-item(3,0,auto);
         margin-left:1em;
     }
   }

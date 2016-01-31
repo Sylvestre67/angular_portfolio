@@ -261,24 +261,30 @@ label.css-label {
   -moz-flex-flow: row wrap;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
   -webkit-align-items: flex-start;
   align-items: flex-start;
+  -webkit-align-content: flex-start;
+  -moz-align-content: flex-start;
+  -ms-align-content: flex-start;
+  align-content: flex-start;
 }
-.post-list > img {
-  -webkit-flex: 1 1 0;
-  -moz-flex: 1 1 0;
-  -ms-flex: 1 1 0;
-  flex: 1 1 0;
-  width: auto;
-  height: 150px;
+.post-list > a {
+  -webkit-flex: 1 0 auto;
+  -moz-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+.post-list > a > img {
+  width: 100%;
+  height: auto;
 }
 .post-list > div {
-  -webkit-flex: 3 1 auto;
-  -moz-flex: 3 1 auto;
-  -ms-flex: 3 1 auto;
-  flex: 3 1 auto;
+  -webkit-flex: 3 0 auto;
+  -moz-flex: 3 0 auto;
+  -ms-flex: 3 0 auto;
+  flex: 3 0 auto;
   margin-left: 1em;
 }
 .pfolio-index > hr {
