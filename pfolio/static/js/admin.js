@@ -1,4 +1,4 @@
-function CustomFileBrowser(field_name, url, type, win) {
+function CFileBrowser(field_name, url, type, win) {
     
     var cmsURL = '/admin/filebrowser/browse/?pop=2';
     cmsURL = cmsURL + '&type=' + type;
@@ -22,7 +22,7 @@ tinymce.init({
   selector: 'textarea',
   height: 500,
   // Callbackss
-  file_browser_callback: CustomFileBrowser,
+  file_browser_callback: CFileBrowser,
   plugins: [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",
