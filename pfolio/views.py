@@ -21,7 +21,7 @@ class APIPortfolioPosts(View):
 class APIblogPosts(View):
 
     def get(self, request, *args, **kwargs):
-        blogPosts = serializers.serialize('json', models.blogPost.objects.all())
+        blogPosts = serializers.serialize('json', models.blogPost.objects.all().order_by('-created_on'))
         return JsonResponse(blogPosts, safe=False)
 
 class APIBlogPostUnique(View):
