@@ -52,7 +52,7 @@ postControl.controller('blogDetailCtrl',['$scope','$routeParams','$http','$sce',
         $scope.postId = $routeParams.postId;
         $http.get('api/blogPosts/' + $scope.postId + '/').success(function(data) {
                 $scope.blog_post = angular.fromJson(data)[0];
-                debugger;
+
                 if ($scope.blog_post.fields.image.length > 0){
                         $scope.showImage = true;
                 }

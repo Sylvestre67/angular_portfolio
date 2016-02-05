@@ -1,0 +1,61 @@
+.cadence-chart{
+	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.cadence-chart .x_legend text {
+  font-size: 11px;
+  fill: #555555;
+  stroke: none;
+  text-anchor: end;
+}
+.cadence-chart .x_legend circle {
+  stroke: none;
+}
+.cadence-chart .x {
+  fill: none;
+  stroke: #111111;
+  shape-rendering: crispEdges;
+}
+
+.cadence-chart .x path {
+  fill: none;
+  stroke: none;
+}
+
+.cadence-chart .x .tick text {
+  font-size: 11px;
+  fill: #777777;
+  stroke: none;
+  transform: translate(0, 1.2em);
+}
+.cadence-chart .x .tick line {
+	fill: none;
+	stroke: none;
+}
+
+.cadence-chart .x .tick circle {
+  fill: #eeeeee;
+  stroke: none;
+}
+
+.cadence-chart .y {
+  fill: none;
+  stroke: #111111;
+  shape-rendering: crispEdges;
+}
+
+.cadence-chart .y path {
+  stroke: none;
+}
+
+.cadence-chart .y .tick text {
+  font-size: 13px;
+  fill: #555555;
+  stroke: none;
+}
+
+.cadence-chart .y .tick line {
+  fill: none;
+  stroke: none;
+}
+
