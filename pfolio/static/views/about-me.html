@@ -4,7 +4,7 @@
 		<hr>
 
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-8 col-xs-offset-2">
                 <div id="winwood"></div>
             </div>
         </div>
@@ -68,6 +68,8 @@
 		width = full_width - margin.left - margin.right,
 		full_height = width*.25,
 		height = full_height - margin.top - margin.bottom,
+				h = height/ 4,
+				w = width/ 9,
 		element_padding = 40;
 
 
@@ -86,48 +88,96 @@
                 .append('g')
                 .attr('transform','translate(' + margin.left + ',' + margin.top + ')');
 
-        /*chart.append('circle')
-            .attr('r',5)
-            .attr('fill','red');*/
-
         var background = chart.append('rect')
             .attr('width',width)
             .attr('height',height)
             .attr('fill','#1B223C');
 
-        var elements = chart.append('g')
-                .attr('class','elements')
-            .attr('transform','translate(' + element_padding + ',0)');
+        var elements1 = chart.append('g')
+                .attr('class','elements1')
+            .attr('transform','translate(' + (w) + ',-50)');
 
-        var paraP = elements.selectAll('g')
-            .data(dataset)
-              .enter().append('g')
-                .attr( 'class',function(d,i){
-                    if (x(d.x_value) % 2 === 0){ return 'unpair'; }else{ return 'pair'; }})
-            .attr('transform', function(d,i){ return 'translate(' + x(d.x_value) +',' + y(d.y_value) + ')'});
+			elements1.append('path')
+				.attr('d','M0 0 L0 ' + h + ' L' + w + ' -' + h +' L' + w + '-' + 2*h + ' Z')
+				.attr('fill','#FD6069');
 
-        paraP.append('path')
-                .attr('d', function(d,i){
-                    if (x(d.x_value) % 2 === 0){
-                         return 'M0 0 L0 30 L75 -30 L75 -60 Z';
-                    }else{  return  'M0 -60 L0 -30 L75 30 L 75 0  Z'; }})
-            .style('fill','#FD6069')
-                .style('stroke','none');
+		var elements2 = chart.append('g')
+                .attr('class','elements2')
+            .attr('transform','translate(' + (5*w) + ',-50)');
 
-        function winwood_animate(value,call_back) {
-            var transition_up = elements.selectAll('.pair').transition().duration(10000).ease('linear');
-            var transition_down = elements.selectAll('.unpair').transition().duration(10000).ease('linear');
+			elements2.append('path')
+				.attr('d','M0 0 L0 ' + h + ' L' + w + ' -' + h +' L' + w + '-' + 2*h + ' Z')
+				.attr('fill','#FD6069');
 
-            transition_up.attr('transform', function (d, i) {
-                return 'translate(' + x(d.x_value) +',' + (y(d.y_value) + value) + ')'
+		var elements3 = chart.append('g')
+                .attr('class','elements3')
+            .attr('transform','translate(' + (3*w) + ',-50)');
+
+			elements3.append('path')
+				.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
+				.attr('fill','#FD6069');
+
+		var elements4 = chart.append('g')
+                .attr('class','elements4')
+            .attr('transform','translate(' + (7*w) + ',-50)');
+
+			elements4.append('path')
+				.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
+				.attr('fill','#FD6069');
+
+			var transition = chart.selectAll('path').transition().duration(5000).ease('linear');
+
+			transition.attr('transform', function (d, i) {
+                return 'translate(' + 0 +',' + 3*height + ')'
             });
 
-            transition_down.attr('transform', function (d, i) {
-                return 'translate(' + x(d.x_value) +',' + (y(d.y_value) - value) + ')'
-            });
-        }
+			var index = 1;
+			var time_delay = (h + 4)*5000/(3*height);
 
-        winwood_animate(400);
+			function add_element_1(i){
+				var id = 'path_' + i;
+
+				elements1.append('path')
+						.attr('id',id)
+					.attr('d','M0 0 L0 ' + h + ' L' + w + ' -' + h +' L' + w + '-' + 2*h + ' Z')
+					.attr('fill','#FD6069');
+
+				elements2.append('path')
+						.attr('id',id)
+					.attr('d','M0 0 L0 ' + h + ' L' + w + ' -' + h +' L' + w + '-' + 2*h + ' Z')
+					.attr('fill','#FD6069');
+
+				elements3.append('path')
+						.attr('id',id)
+					.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
+					.attr('fill','#FD6069');
+
+				elements4.append('path')
+						.attr('id',id)
+					.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
+					.attr('fill','#FD6069');
+
+				var transition = chart.selectAll('#' + id).transition().duration(5000).ease('linear');
+
+				transition.attr('transform', function (d, i) {
+					return 'translate(' + 0 +',' + 3*height + ')'
+				});
+			}
+
+
+			function add_element(index, time_delay){
+				setTimeout(function(){
+					console.log('added element');
+					add_element_1(index);
+					index += 1;
+					add_element(index,time_delay);
+				}, time_delay);
+			}
+
+
+
+		add_element(index,time_delay);
+
 
     })
 
