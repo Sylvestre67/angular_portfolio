@@ -57,11 +57,9 @@
 
         var dataset = [];
 
-        for (j=0;j < 20;j++){
-            for (i=0; i<20;i++){
-                dataset.push({'x_value' : j, 'y_value':i});
-            }
-        }
+         for (i=0; i<5;i++){
+			 dataset.push({'first' : 1, 'second': 5, 'third': 3, 'fourth': 7, 'y' : i});
+		 }
 
         var margin = {top: 0, right: 0, bottom: 0, left: 0},
 		full_width = parseInt($('#winwood').parent().width(), 10),
@@ -78,7 +76,7 @@
                 .range([0,width]);
 
         var y = d3.scale.linear()
-                .domain([8,11])
+                .domain([0,3])
                 .range([0,height]);
 
         var chart = d3.select('#winwood').append('svg')
@@ -93,91 +91,57 @@
             .attr('height',height)
             .attr('fill','#1B223C');
 
-        var elements1 = chart.append('g')
-                .attr('class','elements1')
-            .attr('transform','translate(' + (w) + ',-50)');
+		var elements = chart.selectAll('g')
+			.data(dataset).enter()
+				.append('g')
+				.attr('class','line')
+				.attr('transform',function(d,i){ return 'translate(' + 0 + ',' + y(d.y)  + ')'});
 
-			elements1.append('path')
+			elements.append('g')
+				.attr('transform',function(d,i){ return 'translate(' + d.first * w + ',' + 0 + ')'})
+					.append('path')
 				.attr('d','M0 0 L0 ' + h + ' L' + w + ' -' + h +' L' + w + '-' + 2*h + ' Z')
 				.attr('fill','#FD6069');
 
-		var elements2 = chart.append('g')
-                .attr('class','elements2')
-            .attr('transform','translate(' + (5*w) + ',-50)');
-
-			elements2.append('path')
-				.attr('d','M0 0 L0 ' + h + ' L' + w + ' -' + h +' L' + w + '-' + 2*h + ' Z')
-				.attr('fill','#FD6069');
-
-		var elements3 = chart.append('g')
-                .attr('class','elements3')
-            .attr('transform','translate(' + (3*w) + ',-50)');
-
-			elements3.append('path')
-				.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
-				.attr('fill','#FD6069');
-
-		var elements4 = chart.append('g')
-                .attr('class','elements4')
-            .attr('transform','translate(' + (7*w) + ',-50)');
-
-			elements4.append('path')
-				.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
-				.attr('fill','#FD6069');
-
-			var transition = chart.selectAll('path').transition().duration(5000).ease('linear');
-
-			transition.attr('transform', function (d, i) {
-                return 'translate(' + 0 +',' + 3*height + ')'
-            });
-
-			var index = 1;
-			var time_delay = (h + 4)*5000/(3*height);
-
-			function add_element_1(i){
-				var id = 'path_' + i;
-
-				elements1.append('path')
-						.attr('id',id)
+			elements.append('g')
+				.attr('transform',function(d,i){ return 'translate(' + d.second * w + ',' + 0 + ')'})
+						.append('path')
 					.attr('d','M0 0 L0 ' + h + ' L' + w + ' -' + h +' L' + w + '-' + 2*h + ' Z')
 					.attr('fill','#FD6069');
 
-				elements2.append('path')
-						.attr('id',id)
-					.attr('d','M0 0 L0 ' + h + ' L' + w + ' -' + h +' L' + w + '-' + 2*h + ' Z')
-					.attr('fill','#FD6069');
+			elements.append('g')
+				.attr('transform',function(d,i){ return 'translate(' + d.third * w + ',' + 0 + ')'})
+					.append('path')
+						.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
+						.attr('fill','#FD6069');
 
-				elements3.append('path')
-						.attr('id',id)
-					.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
-					.attr('fill','#FD6069');
+			elements.append('g')
+				.attr('transform',function(d,i){ return 'translate(' + d.fourth * w + ',' + 0 + ')'})
+					.append('path')
+						.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
+						.attr('fill','#FD6069');
 
-				elements4.append('path')
-						.attr('id',id)
-					.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
-					.attr('fill','#FD6069');
+		function update(){
 
-				var transition = chart.selectAll('#' + id).transition().duration(5000).ease('linear');
+			var transition = chart.selectAll('.line').transition().duration(5000).ease('linear');
 
-				transition.attr('transform', function (d, i) {
-					return 'translate(' + 0 +',' + 3*height + ')'
-				});
-			}
+			debugger;
 
+			/*transition.attr('transform', function (d,i) {
+				return 'translate(' + 0 +',' + (y(i + 15)) + ')'
+			});*/
+		}
 
-			function add_element(index, time_delay){
-				setTimeout(function(){
-					console.log('added element');
-					add_element_1(index);
-					index += 1;
-					add_element(index,time_delay);
-				}, time_delay);
-			}
+		function animate(){
+			setTimeout(function(){
+				console.log('added element');
+				dataset.push({'first' : 1, 'second': 5, 'third': 3, 'fourth': 7, 'y': 0})
+				update();
+				animate();
+			}, 500);
+		}
 
-
-
-		add_element(index,time_delay);
-
+		animate();
 
     })
 
