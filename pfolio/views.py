@@ -27,8 +27,9 @@ class APIblogPosts(View):
 class APIBlogPostUnique(View):
 
     def get(self,request,*args, **kwargs):
-        blog_post_pk = kwargs['blog_post_pk']
-        blogPost = serializers.serialize('json',models.blogPost.objects.filter(pk=blog_post_pk))
+
+        blog_post_pk = kwargs['blog_post_slug']
+        blogPost = serializers.serialize('json',models.blogPost.objects.filter(slug=blog_post_pk))
         return JsonResponse(blogPost, safe=False)
 
 class APIPfolioPostUnique(View):
