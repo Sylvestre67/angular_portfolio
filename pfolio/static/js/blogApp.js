@@ -4,7 +4,7 @@
 var blogApp = angular.module('blogApp',['ngRoute','ngCookies','postControl','contactFormControl']);
 
 blogApp.config(['$locationProvider',function($locationProvider) {
-	$locationProvider.html5Mode({enabled: false}).hashPrefix('');
+	$locationProvider.html5Mode({enabled: false}).hashPrefix('!');
 }]);
 
 blogApp.config(['$sceDelegateProvider',function($sceDelegateProvider) {
