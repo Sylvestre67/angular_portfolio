@@ -82,8 +82,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sg_portfolio.wsgi.application'
 
-SEO_JS_PRERENDER_TOKEN = "123456789abcdefghijkl"
-
 # Email
 # PostmarkApp
 if os.getenv('POSTMARK_API_TOKEN'):
@@ -139,6 +137,9 @@ if os.getenv('DATABASE_URL'):
     MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
+    #DJANGO-SEO-JS
+    SEO_JS_PRERENDER_TOKEN = os.environ['PRERENDER_TOKEN']
+
 else:
     DATABASES = {
         'default': {
@@ -163,6 +164,9 @@ else:
 
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
+
+    #DJANGO-SEO-JS
+    SEO_JS_PRERENDER_TOKEN='123456789abjdefgj'
 
 #Static files (CSS, JavaScript, Images)
 #https://docs.djangoproject.com/en/1.8/howto/static-files/
