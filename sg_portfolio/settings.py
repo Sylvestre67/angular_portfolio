@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'storages',
+    'django_seo_js',
     'pfolio',
 )
 
@@ -57,6 +58,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django_seo_js.middleware.EscapedFragmentMiddleware',  # If you're using #!
+    'django_seo_js.middleware.UserAgentMiddleware',  # If you want to detect by user agent
 )
 
 ROOT_URLCONF = 'sg_portfolio.urls'
@@ -78,6 +81,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'sg_portfolio.wsgi.application'
+
+SEO_JS_PRERENDER_TOKEN = "123456789abcdefghijkl"
 
 # Email
 # PostmarkApp
