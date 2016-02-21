@@ -7,12 +7,12 @@
 			<hr>
             <div ng-repeat="post in portfolio_posts" class="row" >
                 <div class="col-xs-12 col-sm-3">
-                    <a href="/#/pfolio/{{ post.pk }}">
+                    <a href="/#/pfolio/{{ post.fields.slug }}">
                         <img ng-show="chekIfImage(post)" src="{{ static_url }}{{ post.fields.image }}" class="img-responsive">
                     </a>
                 </div>
                 <div class="col-xs-12 col-sm-9">
-                    <h3><a href="/#/pfolio/{{ post.pk }}">{{ post.fields.title }}</a></h3>
+                    <h3><a href="/#/pfolio/{{ post.fields.slug }}">{{ post.fields.title }}</a></h3>
                     <p>{{ post.fields.excerpt }}</p>
                 </div>
                 <hr>
