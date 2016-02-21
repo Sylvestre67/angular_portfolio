@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
                 <div id="winwood"></div>
+				<div id="testing"></div>
             </div>
         </div>
 
@@ -13,8 +14,7 @@
             <div class="col-xs-12">
                 <br>
                 <p> My name is Sylvestre, I am a Front End Developper based in the beautiful City of New York.</p>
-                <br>
-                <p> I am currently working full time at <a href="http://www.openslatedata.com">OpenSlate</a> having a lot of fun
+                <p> I am currently working full time at <a href="http://www.openslatedata.com" target="blank">OpenSlate</a> having a lot of fun
                     disrupting the advertisment industry. </p>
                 <p> You'll find here a few example of what I've been working or currently work on.
                     I hope you'll enjoyed the tour!</p>
@@ -57,7 +57,7 @@
 
         var dataset = [];
 
-         for (i=0; i<5;i++){
+         for (i=0; i<100;i++){
 			 dataset.push({'first' : 1, 'second': 5, 'third': 3, 'fourth': 7, 'y' : i});
 		 }
 
@@ -79,23 +79,24 @@
                 .domain([0,3])
                 .range([0,height]);
 
-        var chart = d3.select('#winwood').append('svg')
+		var svg = d3.select('#winwood').append('svg')
             .attr('height',full_height)
-            .attr('width',full_width)
-                .attr()
-                .append('g')
-                .attr('transform','translate(' + margin.left + ',' + margin.top + ')');
+            .attr('width',full_width);
 
-        var background = chart.append('rect')
+		var background = svg.append('rect')
             .attr('width',width)
             .attr('height',height)
             .attr('fill','#1B223C');
+
+        var chart = svg.append('g')
+				.attr('class','chart')
+                .attr('transform','translate(' + margin.left + ',' + margin.top + ')');
 
 		var elements = chart.selectAll('g')
 			.data(dataset).enter()
 				.append('g')
 				.attr('class','line')
-				.attr('transform',function(d,i){ return 'translate(' + 0 + ',' + y(d.y)  + ')'});
+				.attr('transform',function(d,i){ return 'translate(' + 0 + ',' + y(d.y)   + ')'});
 
 			elements.append('g')
 				.attr('transform',function(d,i){ return 'translate(' + d.first * w + ',' + 0 + ')'})
@@ -121,27 +122,76 @@
 						.attr('d','M0' + -(2*h) + 'L0 ' + -h + ' L' + w + ' ' + h +' L' + w + ' 0 Z')
 						.attr('fill','#FD6069');
 
+		function update(dy){
+			var transition = svg.selectAll('.chart').transition().duration(5000);
+			transition.attr('transform','translate(0,' + dy + ')');
+		}
+
+		update(-1000)
+
+		/*$('#about-me').mousemove(function() {
+  			console.log('moving');
+			var dy = -500;
+			update(dy);
+			dy += 1000;
+		});*/
+
+		/*function animate(){
+			setTimeout(function(){
+					dataset.push({'first' : 1, 'second': 5, 'third': 3, 'fourth': 7, 'y': 0});
+					update();
+				animate();
+			}, 50);
+		}
+
+		animate();*/
+
+
+		/*var testing_c = d3.select('#testing').append('svg')
+            .attr('height',full_height)
+            .attr('width',full_width)
+                .attr()
+                .append('g')
+                .attr('transform','translate(' + margin.left + ',' + margin.top + ')');
+
+		var testing_background = testing_c.append('rect')
+            .attr('width',width)
+            .attr('height',height)
+            .attr('fill','#1B223C');
+
+		var testing_elements = testing_c.selectAll('g')
+			.data(dataset).enter()
+				.append('g')
+				.attr('class','testing_point')
+				.attr('transform',function(d,i){ return 'translate(' + 0 + ',' + y(d.y)  + ')'});
+
 		function update(){
 
-			var transition = chart.selectAll('.line').transition().duration(5000).ease('linear');
+			testing_c.selectAll('g').data(dataset)
+					.enter()
+				.append('g')
+				.attr('class','testing_point')
+				.attr('transform',function(d,i){ return 'translate(' + 0 + ',' + y(d.y)  + ')'});;
 
-			debugger;
+			var transition = testing_c.selectAll('.testing_point')
+					.transition().duration(5000).ease('linear');
 
-			/*transition.attr('transform', function (d,i) {
+			transition.attr('transform', function (d,i) {
 				return 'translate(' + 0 +',' + (y(i + 15)) + ')'
-			});*/
+			});
+
 		}
 
 		function animate(){
 			setTimeout(function(){
-				console.log('added element');
-				dataset.push({'first' : 1, 'second': 5, 'third': 3, 'fourth': 7, 'y': 0})
+				dataset.push({'first' : 1, 'second': 5, 'third': 3, 'fourth': 7, 'y': 0});
+				console.log(dataset);
 				update();
-				animate();
-			}, 500);
+				animate()
+			}, 2500);
 		}
 
-		animate();
+		animate()*/
 
     })
 
