@@ -36,4 +36,11 @@ urlpatterns = [
     url(r'^', include('pfolio.urls')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap')
-] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) \
+              + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+
+###### IF URL IS NOT MATCHED FALL BACK TO ANGULAR CONTROL BY LOADING INDEX.HTML ######
+urlpatterns +=[
+    url(r'^.*$', pfolio.views.HomePageView.as_view())
+]

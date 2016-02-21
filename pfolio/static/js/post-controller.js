@@ -13,6 +13,11 @@ postControl.controller('aboutMeCtrl',['$scope',
 
     }]);
 
+postControl.controller('error404Ctrl',['$scope',
+    function($scope){
+
+    }]);
+
 postControl.controller('blogListCtrl',['$scope','$http',
     function($scope,$http){
         $scope.loading = true;
@@ -85,3 +90,7 @@ postControl.controller('portfolioDetailCtrl',['$scope','$routeParams','$http','$
             $scope.loading = false;
         });
     }]);
+
+
+
+

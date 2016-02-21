@@ -4,7 +4,8 @@
 var blogApp = angular.module('blogApp',['ngRoute','ngCookies','postControl','contactFormControl']);
 
 blogApp.config(['$locationProvider',function($locationProvider) {
-	$locationProvider.html5Mode({enabled: false}).hashPrefix('!');
+	$locationProvider.html5Mode(true).hashPrefix('!');
+
 }]);
 
 blogApp.config(['$sceDelegateProvider',function($sceDelegateProvider) {
@@ -46,8 +47,12 @@ blogApp.config(['$routeProvider',
                 templateUrl: s_url + 'views/contact.html',
                 controller: 'contactFormController'
             })
+			.when('/error404/',{
+                templateUrl: s_url + 'views/error_404.html',
+                controller: 'error404Ctrl'
+            })
             .otherwise({
-                redirectTo:'/admin'
+                redirectTo:'/error404'
         	});
    		}
 	]);
