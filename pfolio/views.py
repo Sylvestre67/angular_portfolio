@@ -28,15 +28,15 @@ class APIBlogPostUnique(View):
 
     def get(self,request,*args, **kwargs):
 
-        blog_post_pk = kwargs['blog_post_slug']
-        blogPost = serializers.serialize('json',models.blogPost.objects.filter(slug=blog_post_pk))
+        blog_post_slug = kwargs['blog_post_slug']
+        blogPost = serializers.serialize('json',models.blogPost.objects.filter(slug=blog_post_slug))
         return JsonResponse(blogPost, safe=False)
 
 class APIPfolioPostUnique(View):
 
     def get(self,request,*args, **kwargs):
-        pfolio_post_pk = kwargs['pfolio_post_pk']
-        pfolioPost = serializers.serialize('json',models.portfolioPost.objects.filter(pk=pfolio_post_pk))
+        pfolio_post_slug = kwargs['pfolio_post_slug']
+        pfolioPost = serializers.serialize('json',models.portfolioPost.objects.filter(slug=pfolio_post_slug))
         return JsonResponse(pfolioPost, safe=False)
 
 class APIContactUsForm(View):

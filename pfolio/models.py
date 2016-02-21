@@ -27,6 +27,10 @@ class portfolioPost(models.Model):
     created_on = models.DateTimeField(auto_now_add = True)
     modified_on = models.DateTimeField(auto_now = True,null=True)
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(portfolioPost, self).save(*args, **kwargs)
+
 class blogPostSitemap(Sitemap):
     changefreq = "never"
     priority = 0.5
