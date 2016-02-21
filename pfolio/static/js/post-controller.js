@@ -18,6 +18,7 @@ postControl.controller('error404Ctrl',['$scope',
 
     }]);
 
+
 postControl.controller('blogListCtrl',['$scope','$http',
     function($scope,$http){
         $scope.loading = true;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="blogApp">
 {% load django_seo_js %}
 
 <head lang="en">
@@ -11,10 +11,11 @@
 	<base href="/">
 
     <title>Sylvestre's coding adventures</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="A front end developer adventurer's blog">
+	<meta name="description" content="NYC Web Developer || Sylvestre's coding adventures">
+	<meta name="keywords" content="Front End Developement Developer Web Angular Django Python responsive deisgn bootstrap CSS HTML5 Angular SEO AWS HEROKU OpenSlateData">
 	<meta name="author" content="Sylvestre Gug">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href='https://fonts.googleapis.com/css?family=Poiret+One|Dosis:400,700,600,500,300,800' rel='stylesheet' type='text/css'>
 
@@ -63,7 +64,7 @@
 </head>
 <body id="{% block body_id %}Home{% endblock %}" class="{% block body_class %}{% endblock %}">
 {%  csrf_token %}
-    <div ng-app="{% block ng-app %}blogApp{% endblock %}">
+    <div>
      {%  block body_content %}{%  endblock %}
     </div>
 </body>
