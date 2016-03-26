@@ -290,15 +290,20 @@ label.css-label {
 .pfolio-wrapper{
 	margin-bottom: 15px;
 	.flex-container;
-	.flex-flow(row,wrap);
+	.flex-flow(row,nowrap);
 	.flex-content-justify(flex-start,flex-start);
+
+	& img {
+		align-self: center;
+		max-width:200px;
+		height:auto;
+	}
 
 	& div{
 		padding-left:15px;
 		& h3{
 			margin:0;
 		}
-
 	}
 }
 
