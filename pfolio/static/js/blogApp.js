@@ -51,6 +51,10 @@ blogApp.config(['$routeProvider',
                 templateUrl: s_url + 'views/error_404.html',
                 controller: 'error404Ctrl'
             })
+			.when('/admin/',{
+                templateUrl: s_url + 'views/error_404.html',
+                controller: 'adminAccess'
+            })
             .otherwise({
                 redirectTo:'/error404'
         	});

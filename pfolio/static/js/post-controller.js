@@ -29,7 +29,6 @@ postControl.controller('blogListCtrl',['$scope','$http',
           // Hide loading spinner whether our call succeeded or failed.
           $scope.loading = false;
         });
-
     }]);
 
 postControl.controller('pfolioListCtrl',['$scope','$http',
@@ -92,6 +91,8 @@ postControl.controller('portfolioDetailCtrl',['$scope','$routeParams','$http','$
         });
     }]);
 
-
-
+postControl.controller('adminAccess',['$scope','$routeParams','$http','$sce',
+    function($scope,$routeParams,$http,$sce){
+        window.location.replace('/admin/login/?next=/admin/');
+    }]);
 
