@@ -6,15 +6,15 @@
 			<h1>Some of my recent work</h1>
 			<hr>
             <div ng-repeat="post in portfolio_posts" class="row" >
-					<div class="pfolio-wrapper col-xs-12">
-						<img src="{{ static_url }}{{ post.fields.image }}" class="img-responsive">
-						<div>
-							<h3>
-								<a href="/#!/pfolio/{{ post.fields.slug }}">{{ post.fields.title }}</a>
-							</h3>
-							<p>{{ post.fields.excerpt }}</p>
-						</div>
+				<div class="pfolio-wrapper col-xs-12">
+					<img src="{{ static_url }}{{ post.fields.image }}" class="hidden-xs img-responsive">
+					<div>
+						<h3>
+							<a href="/#!/pfolio/{{ post.fields.slug }}">{{ post.fields.title }}</a>
+						</h3>
+						<p>{{ post.fields.excerpt }}</p>
 					</div>
+				</div>
 			</div>
 		</div>
 	</div>
